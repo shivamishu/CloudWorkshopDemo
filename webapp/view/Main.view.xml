@@ -1,0 +1,42 @@
+<mvc:View controllerName="aws.LightningStorage.controller.Main" xmlns="sap.uxap" xmlns:fi="sap.f" xmlns:m="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:u="sap.ui.unified" height="100%">
+	<m:Page id="MainPage" class="sapUiFioriObjectPage" showHeader="true" showFooter="false" floatingFooter="false">
+		<m:customHeader>
+			<fi:ShellBar class="shellBarCustom" secondTitle="{mainModel>/title}"
+				notificationsNumber="2" showNotifications="false" homeIcon="img/favicon.png" homeIconPressed="onHomeIconPress"
+				homeIconTooltip="Cloud Demo" showCopilot="false" productSwitcherPressed="onMenuPress" showProductSwitcher="false">
+				<!-- <fi:profile>
+					<fi:Avatar press="onAvatarPress"/>
+				</fi:profile> -->
+			</fi:ShellBar>
+		</m:customHeader>
+		<m:content>
+			<m:VBox class="sapUiSmallMargin">
+				<m:Title text="Cloud Workshop Demo: Detect Objects"/>
+				<u:FileUploader id="fileUploader" placeholder="Choose a photo" class="sapUiSmallMargin" name="fileToUpload" uploadUrl="upload/" tooltip="Upload your photo"
+					uploadComplete="handleUploadComplete" mimeType="{mainModel>/mimeType}"/>
+				<m:Button text="Upload" press="handleUploadPress" type="Emphasized" class="sapUiSmallMargin"/>
+				<m:Text id="detailsActiveImage" text="Uploaded Image:" class="sapUiSmallMargin" />
+				<m:HBox>
+				<m:Image ariaDetails="detailsActiveImage" src="{mainModel>/photo_url}"
+					class="sapUiSmallMargin"
+					width="50%"
+					height="60%"
+					decorative="false"
+					press="handleImage3Press"
+					ariaHasPopup="Menu"/>
+
+				<m:List headerText="Objects Detected" items="{mainModel>/items}" busy="{mainModel>/labelBusy}" noDataText="Please Upload Photo to display results">
+					<m:items>
+						<m:StandardListItem
+							title="{mainModel>Name}"
+							info="{mainModel>Confidence} %"
+							infoState="Success"
+				 			/>
+		</m:items>
+	</m:List>	
+				</m:HBox>
+			</m:VBox>
+		</m:content>
+	</m:Page>
+</mvc:View>
